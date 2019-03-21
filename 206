@@ -1,0 +1,12 @@
+struct ListNode* reverselist(struct ListNode* head) {
+	//first  1 2 3 4 5  NULL
+	ListNode *result = NULL
+		ListNode *c = head;//当前位置
+	while (c != NULL){
+		struct ListNode *next = c->next//用next存下c->next
+			c->next = result;//改变当前位置的指向(反转)
+		result = c;//前驱位置后移
+		c = next;//当前位置后移		 
+	}
+	return result;
+}
