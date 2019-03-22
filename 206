@@ -1,3 +1,29 @@
+//
+struct ListNode* removeElements(struct ListNode* head, int val) {
+struct ListNode *result = NULL; // 剩下链表的第一个结点
+struct ListNode *tail = NULL;   // 剩下链表的最后一个结点
+struct ListNode *cur = head;
+while (cur != NULL) {//要插结点不为空
+  if (cur->val != val) {//要插结点值不等于val
+//第一次插入  
+    if (tail == NULL) {//如果新链表尾结点为空
+      result = tail = cur;//插入的第一个结点c既为头也为尾
+//之后插入
+    } else {//新链表尾结点不为空
+      tail->next = cur;//尾插
+      tail = cur;//新链表尾结点后移
+    }
+  }
+  cur = cur->next;//旧链表结点后移
+}
+//循环结束后尾结点不为空,则尾结点的位置区更新为NULL
+if (tail != NULL) {
+  tail->next = NULL;
+}
+//返回新链表
+return result;
+}
+////////////////////////////////////
 //结点角度
 struct ListNode* reverselist(struct ListNode* head) {
 	//first  1 2 3 4 5  NULL
