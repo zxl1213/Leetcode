@@ -1,0 +1,102 @@
+struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {
+	if (l1 == NULL) {
+		return l2;
+	}
+
+	if (l2 == NULL) {
+		return l1;
+	}
+
+	struct ListNode *c1 = l1;
+	struct ListNode *c2 = l2;
+	struct ListNode *result = NULL;
+	struct ListNode *tail = NULL;
+
+	while (c1 != NULL && c2 != NULL) {
+		if (c1->val <= c2->val) {
+			if (tail != NULL) {
+				tail->next = c1;
+				tail = c1;
+			}
+			else {
+				result = tail = c1;
+			}
+
+			c1 = c1->next;
+		}
+		else {
+			if (tail != NULL) {
+				tail->next = c2;
+				tail = c2;
+			}
+			else {
+				result = tail = c2;
+			}
+
+			c2 = c2->next;
+		}
+	}
+
+	if (c1 != NULL) {
+		tail->next = c1;
+	}
+
+	if (c2 != NULL) {
+		tail->next = c2;
+	}
+
+	return result;
+}
+////////////////////////////////
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2) {
+//判断两个链表是否为空
+    if(l1==NULL){
+        return l1;
+    }
+    if(l2==NULL){
+        return l2;
+    }
+	//链表头拿出来
+    struct ListNode* c1=l1;
+    struct ListNode* c2=l2;
+	//新链表的尾结点初始化
+    struct ListNode* tail=NULL;
+	//新链表的头结点初始化
+    struct ListNode* result=NULL;
+    while(c1!=NULL&&c2!=NULL){//当两个链表头均不为空时
+        if(c1->val<=c2->val){//c1的值大于等于c2时
+            if(tail==NULL){//新链表第一次插入
+            result=tail=c1;//头即尾
+            }else{//新链表之后的插入
+                tail->next=c1;//c1插入
+                tail=c1;//新链表尾部更新
+            }
+            c1=c1->next;//c1后移
+        }else{//c1值小于c2时
+            if(tail==NULL){
+                result=tail=c2;
+            }else{
+                tail->next=c2;
+                tail=c2;
+            }      
+        
+            c2=c2->next;
+        }
+    }
+	//如果循环结束c1不为空,尾部的下一个即为c1
+    if(c1!=NULL){
+        tail->next=c1;
+    }
+    if(c2!=NULL){
+        tail->next=c2;
+    }
+	//返回新链表的头部
+    return result;
+}
