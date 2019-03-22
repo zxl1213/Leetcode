@@ -1,3 +1,4 @@
+//结点角度
 struct ListNode* reverselist(struct ListNode* head) {
 	//first  1 2 3 4 5  NULL
 	ListNode *result = NULL
@@ -10,3 +11,22 @@ struct ListNode* reverselist(struct ListNode* head) {
 	}
 	return result;
 }
+//////////////////////////////////////
+//指针角度
+struct ListNode* reversrList(struct ListNode* head){
+   if(head=NULL){
+   return head;
+   }
+   struct ListNode* p1,p2,p3;
+   p1=NULL;
+   p2=head;
+   p3=head->next;
+   while(p2!=NULL){
+      p2->next=p1;//改变当前指向
+	  p1=p2;//前驱结点后移
+	  p2=p3;//当前结点后移
+	  if(p3!=NULL){
+	    p3=p3->next;
+	  }
+   }
+ }  
