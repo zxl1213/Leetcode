@@ -6,23 +6,23 @@
  * };
  */
 struct ListNode* removeElements(struct ListNode* head, int val) {
-    struct ListNode* c=head;
-    struct ListNode* tail=NULL;
-    struct ListNode* result=NULL;
-    while(c!=NULL){
-        if(c->val!=val){
-        if(tail==NULL){
-          result=tail=c;    
-        }else{
-        tail->next=c;
-        tail=c;
+    struct ListNode* c=head;//c作为循环元素
+    struct ListNode* tail=NULL;//新链表尾
+    struct ListNode* result=NULL;//新链表头
+    while(c!=NULL){//遍历整个链表
+        if(c->val!=val){//c的值不为v
+        if(tail==NULL){//尾为空,没有插入任何元素
+          result=tail=c;//插入第一个元素
+        }else{//新链表最后一个元素不为空
+        tail->next=c;//后续插入
+        tail=c;//更新尾部
         }
       }
-      c=c->next;
-    }if(tail!=NULL){
-    tail->next=NULL;
+      c=c->next;更新c
+    }if(tail!=NULL){//遍历整个链表不全为v,即有元素插入时
+    tail->next=NULL;//新链表最后一个元素指向空
     }
-    return result;
+    return result;//返回新链表的头
 }
 ////////////////////////////
 void SListRemoveALL(SList *s,SlistDataType v){
