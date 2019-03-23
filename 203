@@ -5,6 +5,7 @@
  *     struct ListNode *next;
  * };
  */
+ //存在内存泄漏
 struct ListNode* removeElements(struct ListNode* head, int val) {
     struct ListNode* c=head;//c作为循环元素
     struct ListNode* tail=NULL;//新链表尾
